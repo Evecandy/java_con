@@ -25,6 +25,9 @@ public class Main {
 
 
         List<Banana> bananas = new ArrayList<>();
+        bananas.add(new Banana("Yellow", true, "Large", "Cooking banana", 100));
+        bananas.add(new Banana("Green", false, "Medium", "Plantain", 150));
+        bananas.add(new Banana("Yellow", true, "Small", "Sweet banana", 80));
 
         System.out.println("1. Add Bananas");
         System.out.println("2. View Bananas");
