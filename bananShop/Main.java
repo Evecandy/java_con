@@ -48,6 +48,7 @@ public class Main {
                 break;
             case 3:
                 System.out.println("Purchasing Bananas...");
+                purchaseBanana(bananas, scanner);
                 break;
             default:
                 System.out.println("Invalid choice. Please try again.");
@@ -77,7 +78,7 @@ public class Main {
     }
 
 
-    public static void displayBananas(List <Banana> bananas) {
+    public static void displayBananas(List<Banana> bananas) {
         for (Banana banana : bananas) {
             System.out.println("Banana Type: " + banana.getType());
             System.out.println("Banana Color: " + banana.getColor());
@@ -89,91 +90,126 @@ public class Main {
     }
 
 
+    // Add this new method
+    public static void purchaseBanana(List<Banana> bananas, Scanner scanner) {
+        if (bananas.isEmpty()) {
+            System.out.println("Sorry,, bananas are out of stock.");
+            return;
+        }
 
 
+        System.out.println("\nAvailable Bananas for Purchase:");
+        for (int i = 0; i < bananas.size(); i++) {
+            Banana b = bananas.get(i);
+            System.out.println("\nBanana #" + (i + 1));
+            System.out.println("Type: " + b.getType());
+            System.out.println("Color: " + b.getColor());
+            System.out.println("Size: " + b.getSize());
+            System.out.println("Price: $" + b.getPrice());
+            System.out.println("-----------------------------");
+        }
+        System.out.println("\nEnter the number of the banana you wish to purchase (1-" + bananas.size() + "):");
+        int selection = scanner.nextInt();
 
+        if (selection >= 1 && selection <= bananas.size()) {
+            Banana selectedBanana = bananas.get(selection - 1);
+            System.out.println("\nSelected Banana Details:");
+            System.out.println("Type: " + selectedBanana.getType());
+            System.out.println("Price: $" + selectedBanana.getPrice());
 
+            System.out.println("\nConfirm purchase? (1: Yes / 2: No)");
+            int confirm = scanner.nextInt();
 
-
-    public static String greeting(String name) {
-        return "Hello, " + name + "!";
+            if (confirm == 1) {
+                bananas.remove(selection - 1);
+                System.out.println("Purchase successful!");
+                System.out.println("Thank you for buying a " + selectedBanana.getType() + " banana.");
+            } else {
+                System.out.println("Purchase cancelled.");
+            }
+        } else {
+            System.out.println("Invalid selection! Please choose a number between 1 and " + bananas.size());
+        }
     }
 
-
-    public static void bananExamples(String name) {
-        //Primitive data types
-
-        System.out.println("Number of banans created: " + Banana.bananasCreated);
+        public static String greeting (String name){
+            return "Hello, " + name + "!";
+        }
 
 
-        Banana kisiiBanana = new Banana("Yellow", true, "Large", "Kisii", 100);
+        public static void bananExamples (String name){
+            //Primitive data types
 
-        System.out.println("Number of banans created: " + Banana.bananasCreated);
-
-        Banana kikuyuBanana = new Banana();
-        kikuyuBanana.setType("Kikuyu");
-        kikuyuBanana.bananasCreated = 23;
-
-        System.out.println("Banana nutrients: " + kikuyuBanana.getNutrients());
-
-        System.out.println("Number of banans created: " + Banana.bananasCreated);
-
-        System.out.println("Kikuyu banana color - " +kikuyuBanana.getColor());
+            System.out.println("Number of banans created: " + Banana.bananasCreated);
 
 
+            Banana kisiiBanana = new Banana("Yellow", true, "Large", "Kisii", 100);
 
-        System.out.println("Initial Price: - " + kisiiBanana.getPrice());
+            System.out.println("Number of banans created: " + Banana.bananasCreated);
 
-        kisiiBanana.setBananaPrice(120);
+            Banana kikuyuBanana = new Banana();
+            kikuyuBanana.setType("Kikuyu");
+            kikuyuBanana.bananasCreated = 23;
 
-        System.out.println("Updated Price: - " + kisiiBanana.getPrice());
+            System.out.println("Banana nutrients: " + kikuyuBanana.getNutrients());
 
-        kisiiBanana.setBananaPrice(24.8);
-        System.out.println("Updated Price: - " + kisiiBanana.getPrice());
+            System.out.println("Number of banans created: " + Banana.bananasCreated);
 
-        kisiiBanana.setBananaPrice("One");
-        System.out.println("Updated Price: - " + kisiiBanana.getPrice());
-
-
-        Banana luhyaBana = new Banana("Luhya");
-
-        System.out.println("Number of banans created: " + Banana.bananasCreated);
+            System.out.println("Kikuyu banana color - " + kikuyuBanana.getColor());
 
 
-        Banana luoBanana = new Banana();
+            System.out.println("Initial Price: - " + kisiiBanana.getPrice());
 
-        System.out.println("Number of banans created: " + Banana.bananasCreated);
+            kisiiBanana.setBananaPrice(120);
 
-        Orange orange = new Orange();
-        orange.setNutrients("Antioxidants");
+            System.out.println("Updated Price: - " + kisiiBanana.getPrice());
 
-        System.out.println(orange.getRipe());
-        System.out.println(luhyaBana.getNutrients());
-    }
+            kisiiBanana.setBananaPrice(24.8);
+            System.out.println("Updated Price: - " + kisiiBanana.getPrice());
 
-
-    public static void loops() {
-
-        int[] numbers = {23, 44, 55, 6, 2, 5, 6, 6, 3, 5, 3, 554, 3, 5, 9};
+            kisiiBanana.setBananaPrice("One");
+            System.out.println("Updated Price: - " + kisiiBanana.getPrice());
 
 
-        //Continue
-        //break
+            Banana luhyaBana = new Banana("Luhya");
 
-        //For loop
+            System.out.println("Number of banans created: " + Banana.bananasCreated);
+
+
+            Banana luoBanana = new Banana();
+
+            System.out.println("Number of banans created: " + Banana.bananasCreated);
+
+            Orange orange = new Orange();
+            orange.setNutrients("Antioxidants");
+
+            System.out.println(orange.getRipe());
+            System.out.println(luhyaBana.getNutrients());
+        }
+
+
+        public static void loops () {
+
+            int[] numbers = {23, 44, 55, 6, 2, 5, 6, 6, 3, 5, 3, 554, 3, 5, 9};
+
+
+            //Continue
+            //break
+
+            //For loop
 //        for (int i = 0; i < numbers.length; i++) {
 //            System.out.println("Number: " + numbers[i]);
 //        }
 
-        //Enhanced for loop
-        for (int num : numbers) {
-            System.out.println("Number: " + num);
-            if (num == 6) {
-                break;
+            //Enhanced for loop
+            for (int num : numbers) {
+                System.out.println("Number: " + num);
+                if (num == 6) {
+                    break;
+                }
             }
-        }
 
-        //finding the largest number in an array
+            //finding the largest number in an array
 
 //        int largest = numbers[0];
 //        for (int i = 0; i < numbers.length; i++) {
@@ -192,7 +228,7 @@ public class Main {
 //        }
 
 
-        //While loop
+            //While loop
 //        int j = 0;
 //        while (j < numbers.length) {
 //            System.out.println(numbers[j]);
@@ -208,18 +244,18 @@ public class Main {
 //                k++;
 //            } while (k < numbers.length);
 //        }
-    }
+        }
 
 
-    public static void arrays() {
-        Integer[][] array = new Integer[7][4];
+        public static void arrays () {
+            Integer[][] array = new Integer[7][4];
 
-        //Initializing the array
-        array[0][0] = 1;
-        array[0][1] = 2;
-        array[0][2] = 3;
+            //Initializing the array
+            array[0][0] = 1;
+            array[0][1] = 2;
+            array[0][2] = 3;
 
-        //printing array elements
+            //printing array elements
 //        for (int i = 0; i < array.length; i++) {
 //            for (int j = 0; j < array[i].length; j++) {
 //                System.out.print(array[i][j] + " ");
@@ -227,146 +263,146 @@ public class Main {
 //            System.out.println();
 //        }
 
-        int[][] array2 = {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}
-        };
+            int[][] array2 = {
+                    {1, 2, 3},
+                    {4, 5, 6},
+                    {7, 8, 9}
+            };
 
-        //Printing array2 elements
-        for (int i = 0; i < array2.length; i++) {
-            for (int j = 0; j < array2[i].length; j++) {
-                System.out.print(array2[i][j] + " ");
+            //Printing array2 elements
+            for (int i = 0; i < array2.length; i++) {
+                for (int j = 0; j < array2[i].length; j++) {
+                    System.out.print(array2[i][j] + " ");
+                }
+                System.out.println();
             }
-            System.out.println();
+
+
         }
 
 
-    }
+        public void ifStatement () {
+            scanner = new Scanner(System.in);
 
+            System.out.println("Enter your age: ");
+            int userAge = scanner.nextInt();
 
-    public void ifStatement() {
-        scanner = new Scanner(System.in);
-
-        System.out.println("Enter your age: ");
-        int userAge = scanner.nextInt();
-
-        String message = (userAge < 18 && userAge > 0) ?
-                "You are a minor." :
-                (userAge > 18) ?
-                        "You are an adult." :
-                        "Invalid age!";
+            String message = (userAge < 18 && userAge > 0) ?
+                    "You are a minor." :
+                    (userAge > 18) ?
+                            "You are an adult." :
+                            "Invalid age!";
 
 //        String message = userAge < 18 && userAge > 0  && userAge > 18 ? "You are a minor." : "You are an adult.";
 
-        if (userAge > 18) {
-            message = "You are an adult.";
-        } else if (userAge < 18 && userAge > 0) {
-            message = "You are a minor.";
-        } else {
-            message = "Invalid age!";
+            if (userAge > 18) {
+                message = "You are an adult.";
+            } else if (userAge < 18 && userAge > 0) {
+                message = "You are a minor.";
+            } else {
+                message = "Invalid age!";
+            }
+
+            System.out.println(message);
         }
 
-        System.out.println(message);
-    }
 
+        public static Integer getAge () {
+            return 30;
+        }
 
-    public static Integer getAge() {
-        return 30;
-    }
-
-    public void examples() {
-        int age = 30; //-2,147,483,648 to 2,147,483,647
-        double salary = 50000.50; //-1.7976931348623157E+308 to 1.7976931348623157E+308
-        boolean isEmployed = true;
-        char initial = 'A';
-        float height = 5.9f; //-3.40282347E+38 to 3.40282347E+38
-        long population = 780000000L; //-9223372036854775808 to 9223372036854775807
-        short temperature = 25; //-32768 to 32767
-        byte level = 127; //-128 to 127
+        public void examples () {
+            int age = 30; //-2,147,483,648 to 2,147,483,647
+            double salary = 50000.50; //-1.7976931348623157E+308 to 1.7976931348623157E+308
+            boolean isEmployed = true;
+            char initial = 'A';
+            float height = 5.9f; //-3.40282347E+38 to 3.40282347E+38
+            long population = 780000000L; //-9223372036854775808 to 9223372036854775807
+            short temperature = 25; //-32768 to 32767
+            byte level = 127; //-128 to 127
 
 
 //        byte value = 170;
 //        age.
 
 
-        //Reference data types
-        String name = "John Doe";
-        Integer ageObject = null;
-        Double salaryObject = Double.valueOf(salary);
-        Boolean isEmployedObject = Boolean.valueOf(isEmployed);
-        Character initialObject = Character.valueOf(initial);
-        Float heightObject = Float.valueOf(height);
-        Long populationObject = Long.valueOf(population);
-        Short temperatureObject = Short.valueOf(temperature);
+            //Reference data types
+            String name = "John Doe";
+            Integer ageObject = null;
+            Double salaryObject = Double.valueOf(salary);
+            Boolean isEmployedObject = Boolean.valueOf(isEmployed);
+            Character initialObject = Character.valueOf(initial);
+            Float heightObject = Float.valueOf(height);
+            Long populationObject = Long.valueOf(population);
+            Short temperatureObject = Short.valueOf(temperature);
 
 
-        if (ageObject != null) {
-            System.out.println("Age Object is not null: " + ageObject);
+            if (ageObject != null) {
+                System.out.println("Age Object is not null: " + ageObject);
 //           ageObject.
-        }
+            }
 
 
-        //Operators
-        //Arithmetic Operators + - * / %
-        int sum = age + 5; //Addition
+            //Operators
+            //Arithmetic Operators + - * / %
+            int sum = age + 5; //Addition
 
-        //Assignment Operators =, +=, -=, *=, /=, %=
+            //Assignment Operators =, +=, -=, *=, /=, %=
 
-        int x = 9;
-        int y = 2;
+            int x = 9;
+            int y = 2;
 
 //        int b = x % y;
 
-        System.out.println(x %= y);
+            System.out.println(x %= y);
 
 
-        //Relational Operators == != > < < >= <=
-        //Logical Operators
-        //Bitwise Operators
-        //Unary Operators
+            //Relational Operators == != > < < >= <=
+            //Logical Operators
+            //Bitwise Operators
+            //Unary Operators
 
 
-        System.out.println("Enter your name: ");
+            System.out.println("Enter your name: ");
 
-        String userName = scanner.nextLine();
+            String userName = scanner.nextLine();
 
-        System.out.println("Enter your age: ");
-        int userAge = scanner.nextInt();
+            System.out.println("Enter your age: ");
+            int userAge = scanner.nextInt();
 
-        System.out.println("Enter your salary: ");
-        float salaryFloat = scanner.nextFloat();
+            System.out.println("Enter your salary: ");
+            float salaryFloat = scanner.nextFloat();
 
-        scanner.close();
+            scanner.close();
 
 //        String greetingMessage = greeting(userName);
 
 
-        System.out.println("Hello " + userName + "! You are " + userAge + " years old.");
+            System.out.println("Hello " + userName + "! You are " + userAge + " years old.");
 
-        System.out.printf("Your salary is: %.2f\n", salaryFloat);
-
-
-        if (userAge < 18) { //expression
-            System.out.println("You are a minor."); //statement
-        } else {
-            System.out.println("You are an adult.");
-        }
-
-        String message = (userAge < 18) ? "You are a minor." : "You are an adult.";
+            System.out.printf("Your salary is: %.2f\n", salaryFloat);
 
 
-        System.out.println(message);
+            if (userAge < 18) { //expression
+                System.out.println("You are a minor."); //statement
+            } else {
+                System.out.println("You are an adult.");
+            }
 
-        //If then
-        //if then else
-        //nested if
+            String message = (userAge < 18) ? "You are a minor." : "You are an adult.";
+
+
+            System.out.println(message);
+
+            //If then
+            //if then else
+            //nested if
 
 //
 //        System.out.printf("Hello, %s!  Welcome to the Java program.\n", userName);
 //        System.out.println("Your age is: " + age);
 
+        }
+
+
     }
-
-
-}
